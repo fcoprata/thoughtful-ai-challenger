@@ -62,6 +62,23 @@ class Scrapper:
         data.append(x)
         return data
 
+    def download_image(self, data, filename='image.jpg'):
+        """
+        Downloads an image from the given URL.
+
+        Args:
+            data (list): A list of dictionaries containing the image URL.
+            filename (str): The name of the image file to be downloaded.
+
+        Returns:
+            None
+        """
+        for item in data:
+            url = item['Src']
+            r = requests.get(url)
+            with open(filename, 'wb') as f:
+                f.write(r.content)
+
     def generate_excel(self, data, filename='data.xlsx'):
         """
         Generates an Excel file from the given data.
